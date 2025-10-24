@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Munene Timothy - Portfolio</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2920/2920222.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- Bootstrap & Fonts -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -14,10 +14,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
   <style>
+  /* Base Styles */
   body {
     font-family: 'Roboto', sans-serif;
-    background-color: #111; /* dark background */
-    color: #f1f1f1; /* light text for visibility */
+    background-color: #111;
+    color: #f1f1f1;
+    overflow-x: hidden;
   }
   .navbar {
     background-color: #000;
@@ -30,15 +32,27 @@
     color: #E63946 !important;
   }
 
+  /* Hero Section */
   .hero-section {
     background-color: #111;
     color: white;
     padding: 100px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
   }
   .hero-section h1 strong {
     color: #E63946;
+    word-break: break-word;
+  }
+  .hero-section img {
+    max-width: 100%;
+    height: auto;
   }
 
+  /* Buttons */
   .btn-red {
     background-color: #E63946;
     color: white;
@@ -62,12 +76,14 @@
 
   section {
     padding: 60px 0;
-    background-color: #111; /* makes all sections dark */
-    color: #f1f1f1; /* ensures text remains readable */
+    background-color: #111;
+    color: #f1f1f1;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   section#services {
-    background-color: #1a1a1a; /* darker variant for contrast */
+    background-color: #1a1a1a;
   }
 
   footer {
@@ -76,7 +92,8 @@
   }
 
   h2, h3, h4, h5, p, li, label {
-    color: #f1f1f1; /* ensures headers and text are visible */
+    color: #f1f1f1;
+    word-break: break-word;
   }
 
   input,
@@ -96,20 +113,98 @@
     color: #fff;
     border-color: #E63946;
   }
-.animated-name strong {
-  display: inline-block;
-  animation: slideFade 1.5s ease-out forwards;
-  opacity: 0;
-  transform: translateX(-30px);
-}
 
-@keyframes slideFade {
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  /* ====== RESPONSIVENESS ====== */
+  @media (max-width: 1200px) {
+    .container {
+      padding: 0 15px;
+    }
   }
-}
-</style>
+
+  @media (max-width: 992px) {
+    .navbar-collapse {
+      background-color: #000;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .hero-section {
+      text-align: center;
+      padding: 70px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem; }
+    p { font-size: 15px; }
+    .btn { padding: 10px 20px; font-size: 0.9rem; }
+    .card { margin-bottom: 25px; }
+    .container { padding: 0 20px; }
+    .navbar-brand { font-size: 1rem; }
+    .hero-section img { max-width: 90%; }
+  }
+
+  @media (max-width: 576px) {
+    .hero-section h1 { font-size: 1.6rem; line-height: 1.3; }
+    .hero-section p { font-size: 0.95rem; }
+    .col-md-6, .col-md-10, .col-md-4 { flex: 0 0 100%; max-width: 100%; }
+    .card { margin: 10px auto; }
+    .text-center img { max-width: 100%; height: auto; }
+    footer p { font-size: 0.85rem; }
+  }
+
+  @media (max-width: 400px) {
+    .btn { font-size: 0.85rem; padding: 8px 16px; }
+    .navbar-brand { font-size: 0.9rem; }
+  }
+
+  /* Smooth text scaling */
+  h1, h2, h3 { word-wrap: break-word; }
+
+  /* Prevent layout shift */
+  img { max-width: 100%; height: auto; }
+
+  /* Typing Animation */
+  .animated-name strong {
+    display: inline-block;
+    animation: slideFade 1.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  @keyframes slideFade {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Hover & Hero Animations */
+  .nav-link:hover, .btn:hover, .card:hover i {
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 10px #fd0925;
+    transform: scale(1.05);
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hero-section {
+    background: linear-gradient(-45deg, #111, #1a1a1a, #000, #191919);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  .hero-section img {
+    animation: floatImg 4s ease-in-out infinite;
+  }
+  @keyframes floatImg {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  </style>
+
+  <!-- AOS for smooth scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
 
@@ -120,46 +215,58 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-		<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-		<li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
         <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-		<li class="nav-item"><a class="nav-link" href="#profiles">Author Profiles</a></li>
+        <li class="nav-item"><a class="nav-link" href="#profiles">Author Profiles</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
+{% if messages %}
+<div class="container mt-5 pt-5">
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="background-color:white;color:red;border:none;font-size:1.1rem;">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color:white;opacity:0.8;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
 <!-- HERO SECTION -->
 <section id="home" class="hero-section">
   <div class="container">
-    <div class="row align-items-center">
-      <!-- Text -->
-      <div class="col-md-6 mb-4">
-        <h1 class="animated-name">
-           Hello, I'm 
-         <strong style="color: #fd001e; text-shadow: 1px 1px 8px rgba(255, 76, 96, 0.6);">
-           MUNENE TIMOTHY
-         </strong>
-        </h1>
-        <h4 class="text-light">A Cryptocurrency News Writer</h4>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6 mb-4 text-center text-md-left">
+        <h1 class="animated-name">Hello, I'm <strong style="color:#fd001e;text-shadow:1px 1px 8px rgba(255,76,96,0.6);">MUNENE TIMOTHY</strong></h1>
+        <h4 class="text-light"><span id="typed"></span></h4>
+        <script>
+          var typed = new Typed("#typed", {
+            strings: ["A Cryptocurrency News Writer","A Blockchain Enthusiast","A Fintech Researcher","And a Food Scientist"],
+            typeSpeed: 90, backSpeed: 80, loop: true
+          });
+        </script>
         <p class="mt-3">"I craft insightful articles that decode the crypto world — from DeFi and NFTs to market shifts — making digital finance accessible to all."</p>
-        <a href="{% static 'files/timo_cv.pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download CV</a>
-        <a href="{% static 'files/timo_resume.pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download Resume</a>
+        <a href="{% static 'files/munene_cv.pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download CV</a>
+        <a href="{% static 'files/timo_resume..pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download Resume</a>
       </div>
-      <!-- Image -->
       <div class="col-md-6 text-center">
-        <img src="{% static 'images/munene.jpeg' %}" alt="Munene Timothy" class="img-fluid rounded shadow" style="max-width: 350px;">
+        <img src="{% static 'images/munene.jpeg' %}" alt="Munene Timothy" class="img-fluid rounded shadow">
       </div>
     </div>
   </div>
 </section>
 
+<section id="about" class="py-5" data-aos="fade-up"></section>
 <!-- About Me Section -->
 <section id="about" class="py-5" style="background-color: #1a1a1a;">
   <div class="container">
@@ -206,6 +313,7 @@
 </div>
 </section>
 
+<section id="experience" class="" data-aos="fade-left"></section>
 <!-- EXPERIENCE SECTION -->
 <section id="experience" style="background-color: #111; padding: 60px 0;">
   <div class="container">
@@ -382,6 +490,7 @@
   </div>
 </section>
 
+<section id="skills" class="" data-aos="zoom-in"></section>
 <!-- SKILLS SECTION -->
 <section id="skills" style="background-color: #1a1a1a;">
   <div class="container">
@@ -442,6 +551,148 @@
 <!-- JS Scripts -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+// === 5. Back-to-Top Button ===
+const topButton = document.createElement("button");
+topButton.innerHTML = "↑";
+topButton.className = "back-to-top";
+document.body.appendChild(topButton);
+topButton.addEventListener("click", () => window.scrollTo({top:0, behavior:'smooth'}));
+window.addEventListener("scroll", () => {
+  topButton.style.display = window.scrollY > 400 ? "block" : "none";
+});
+</script>
+<script>
+// Auto-hide Django alert messages after 4 seconds
+setTimeout(() => {
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach(alert => {
+    alert.style.transition = "opacity 0.5s ease";
+    alert.style.opacity = "0";
+    setTimeout(() => alert.remove(), 400);
+  });
+}, 1000);
+</script>
+
+<style>
+/* === Scroll Reveal Animations === */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Back-to-Top Button === */
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #E63946;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(230,57,70,0.4);
+  display: none;
+  z-index: 999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.back-to-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(230,57,70,0.8);
+}
+
+/* === Parallax Hero Section === */
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('{% static "images/bitcn.webp" %}') center/cover fixed;
+}
+
+/* === Animated Footer Glow === */
+footer {
+  position: relative;
+  background: #000;
+  color: white;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #E63946, transparent);
+  animation: glow 3s infinite linear;
+}
+@keyframes glow {
+  0% { left: -50%; }
+  50% { left: 100%; }
+  100% { left: -50%; }
+}
+</style>
+<!-- === DARK/LIGHT MODE TOGGLE === -->
+
+<style>
+/* === Toggle Button Styling === */
+.theme-toggle {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background: #E63946;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(230,57,70,0.4);
+}
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.1);
+  box-shadow: 0 0 20px rgba(230,57,70,0.7);
+}
+
+/* === Light Mode Styles === */
+body.light-mode {
+  background-color: #f8f9fa;
+  color: #111;
+}
+body.light-mode header,
+body.light-mode nav.navbar {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+body.light-mode .navbar a {
+  color: #333 !important;
+}
+body.light-mode .navbar a:hover {
+  color: #E63946 !important;
+}
+body.light-mode .hero-section {
+  background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('{% static "images/munene.jpeg" %}') center/cover fixed;
+}
+body.light-mode .btn {
+  background-color: #E63946;
+  color: white;
+}
+body.light-mode .btn:hover {
+  background-color: #d62839;
+}
+body.light-mode footer {
+  background-color: #fff;
+  color: #333;
+}
+</style>
 
 </body>
 </html>
