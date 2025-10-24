@@ -9,7 +9,5 @@ venv/
 # Environment variables
 .env
 
-# Static & media files
-/media/
-staticfiles/
+
 
