@@ -1,1 +1,1 @@
-web: gunicorn munene_portfolio.wsgi
+web: gunicorn myportfolio.wsgi
