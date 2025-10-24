@@ -250,11 +250,27 @@
         <h1 class="animated-name">Hello, I'm <strong style="color:#fd001e;text-shadow:1px 1px 8px rgba(255,76,96,0.6);">MUNENE TIMOTHY</strong></h1>
         <h4 class="text-light"><span id="typed"></span></h4>
         <script>
-          var typed = new Typed("#typed", {
-            strings: ["A Cryptocurrency News Writer","A Blockchain Enthusiast","A Fintech Researcher","And a Food Scientist"],
-            typeSpeed: 90, backSpeed: 80, loop: true
-          });
-        </script>
+  var strings = [
+    "A Cryptocurrency News Writer",
+    "A Blockchain Enthusiast",
+    "A Fintech Researcher",
+    "And a Food Scientist"
+  ];
+
+  var typed = new Typed("#typed", {
+    strings: strings,
+    typeSpeed: 90,
+    backSpeed: 80,
+    loop: false, // stop repeating
+    onComplete: function(self) {
+      // After typing finishes, show all strings together
+      document.querySelector("#typed").textContent = strings.join(" | ");
+      self.cursor.remove(); // optional: remove blinking cursor
+    }
+  });
+</script>
+
+
         <p class="mt-3">"I craft insightful articles that decode the crypto world — from DeFi and NFTs to market shifts — making digital finance accessible to all."</p>
         <a href="{% static 'files/munene_cv.pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download CV</a>
         <a href="{% static 'files/timo_resume..pdf' %}" class="btn btn-outline-light btn-lg mr-2" download>Download Resume</a>
